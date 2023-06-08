@@ -1,0 +1,29 @@
+# (Только при первом развертывании !!!) пароль root для первого входа:
+sudo docker exec -it gitlab-loc grep 'Password:' /etc/gitlab/initial_root_password
+
+# Поднять докер, если упал:
+systemctl start docker
+
+# Стартануть контейнер
+docker container start gitlab-loc
+
+# Вывеcти список контейнеров:
+docker container ls -a
+
+# Как зайти на gitlab:
+https://gitlab.loc:443
+https://172.20.0.10:443
+https://localhost:4430
+
+# Дополнительные порты:
+localhost:2022 - ssh
+localhost:8880 - http
+
+# Зайти в контейнер и посмотреть что внутри (не рекомендуется):
+docker exec -it gitlab-loc /bin/bash
+
+# присоединиться к БД PSQL (находится в контейнере docker):
+psql --host=172.70.0.10 --username=turtle_bot --dbname=gino -W
+# или:
+psql --host=localhost:54032 --username=turtle_bot --dbname=gino -W
+

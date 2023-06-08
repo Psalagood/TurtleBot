@@ -1,0 +1,23 @@
+version: "3.6"
+
+networks:
+  psql-net:
+    ipam:
+        config:
+          - subnet: 172.70.0.0/24
+
+services:
+  postgres:
+    container_name: turtle-postgres-14.2-test
+    image: postgres:14.2
+    environment:
+      POSTGRES_DB: "gino"
+      POSTGRES_USER: "turtle_bot"
+      POSTGRES_PASSWORD: "LeiysqVfkfrjd"
+      PGDATA: "/var/lib/postgresql/data/turtle-db-test"
+      TZ: "Europe/Moscow"
+    ports:
+      - "54032:5432"
+    networks:
+       psql-net:
+         ipv4_address: 172.70.0.10

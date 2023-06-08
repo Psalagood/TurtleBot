@@ -1,0 +1,30 @@
+version: '3.6'
+
+networks:
+  gitlab-net:
+    ipam:
+        config:
+          - subnet: 172.20.0.0/24
+
+services:
+  web:
+    image: 'gitlab/gitlab-ee:14.10.0-ee.0'
+    container_name: gitlab-loc
+    restart: always
+    hostname: 'gitlab.loc'
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'https://gitlab.loc'
+        # Add any other gitlab.rb configuration here, each on its own line
+    ports:
+      - '8880:80'
+      - '4430:443'
+      - '2022:22'
+    volumes:
+      - '$GITLAB_HOME/config:/etc/gitlab'
+      - '$GITLAB_HOME/logs:/var/log/gitlab'
+      - '$GITLAB_HOME/data:/var/opt/gitlab'
+    networks:
+     gitlab-net:
+        ipv4_address: 172.20.0.10
+    shm_size: '256m'
