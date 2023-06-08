@@ -13,7 +13,7 @@ services:
     environment:
       POSTGRES_DB: "gino"
       POSTGRES_USER: "turtle_bot"
-      POSTGRES_PASSWORD: "LeiysqVfkfrjd"
+      POSTGRES_PASSWORD: ""
       PGDATA: "/var/lib/postgresql/data/turtle-db-test"
       TZ: "Europe/Moscow"
     ports:
